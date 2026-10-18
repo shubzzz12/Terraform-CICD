@@ -1,6 +1,14 @@
 pipeline {
     agent any
 
+     environment {
+        // Points Terraform directly to the jenkins user's AWS credential file
+        AWS_SHARED_CREDENTIALS_FILE = '/var/lib/jenkins/.aws/credentials'
+        
+        // Explicitly set your target AWS region if it isn't set in your code
+        AWS_DEFAULT_REGION          = 'ap-south-1' 
+    }
+    
     stages {
         stage('Checkout') {
             steps {
